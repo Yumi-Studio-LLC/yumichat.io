@@ -126,6 +126,30 @@
     }
     .btn-gold:hover { opacity: 0.9; transform: translateY(-1px); }
 
+    .is-inactive,
+    .is-inactive:hover {
+      opacity: 0.45;
+      cursor: not-allowed;
+      pointer-events: none;
+      transform: none;
+    }
+
+    .waitlist-input:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    .btn-gold:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .btn-gold:disabled:hover {
+      opacity: 0.45;
+      transform: none;
+    }
+
     /* ── Hero ── */
     .hero {
       min-height: 100vh;
@@ -448,7 +472,7 @@
     </svg>
     <span class="nav-wordmark">Yumi</span>
   </a>
-  <a href="#waitlist" class="nav-cta">Join waitlist</a>
+  <span class="nav-cta is-inactive" aria-disabled="true">Join waitlist</span>
 </nav>
 
 <!-- HERO -->
@@ -481,7 +505,7 @@
   </p>
 
   <div class="hero-actions">
-    <a href="#waitlist" class="btn-primary">Join the waitlist</a>
+    <span class="btn-primary is-inactive" aria-disabled="true">Join the waitlist</span>
     <a href="#how" class="btn-secondary">See how it works</a>
   </div>
 
@@ -643,10 +667,10 @@
     </p>
 
     <div class="waitlist-form">
-      <input type="email" class="waitlist-input" placeholder="your@email.com" />
-      <button class="btn-gold">Join waitlist</button>
+      <input type="email" class="waitlist-input" placeholder="your@email.com" disabled />
+      <button type="button" class="btn-gold" disabled>Join waitlist</button>
     </div>
-    <p class="waitlist-note">No spam. Just a heads up when you can try it.</p>
+    <p class="waitlist-note">Waitlist isn't open yet — check back soon.</p>
   </div>
 </section>
 
@@ -673,31 +697,6 @@
 
   <p class="footer-copy">© 2026 Yumi Chat LLC. All rights reserved.</p>
 </footer>
-
-<script>
-  const btn = document.querySelector('.waitlist-form .btn-gold');
-  const input = document.querySelector('.waitlist-input');
-
-  btn.addEventListener('click', handleSubmit);
-  input.addEventListener('keydown', function(e) {
-    if (e.key === 'Enter') handleSubmit();
-  });
-
-  function handleSubmit() {
-    const email = input.value.trim();
-    if (!email || !email.includes('@')) {
-      input.style.background = 'rgba(220,80,80,0.2)';
-      setTimeout(() => input.style.background = '', 800);
-      return;
-    }
-    btn.textContent = "🌽 You're on the list!";
-    btn.style.background = '#3D6B4F';
-    btn.style.color = 'white';
-    input.value = '';
-    input.disabled = true;
-    btn.disabled = true;
-  }
-</script>
 
 </body>
 </html>
